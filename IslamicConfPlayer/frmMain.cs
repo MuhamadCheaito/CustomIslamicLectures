@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -67,7 +68,8 @@ namespace IslamicConfPlayer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            JObject videos = JObject.Parse(File.ReadAllText(@".\videos.json"));
+            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"..\Data\videos.json");
+            JObject videos = JObject.Parse(File.ReadAllText(path));
             foreach(var video in videos["playlist"]["videos"])
             {
                 ListViewItem item = new ListViewItem();
